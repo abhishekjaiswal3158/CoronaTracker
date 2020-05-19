@@ -2,9 +2,12 @@ package com.example.networking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,9 +27,9 @@ public class Global_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_global);
 
         ListView earthquakeListView = (ListView) findViewById(R.id.countrylistView);
-
+final ArrayList<Global> globals=new ArrayList<>();
         // Create a new adapter that takes an empty list of earthquakes as input
-        mAdapter = new GlobalAdapter(this, new ArrayList<Global>());
+        mAdapter = new GlobalAdapter(this,globals);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -36,6 +39,27 @@ public class Global_Activity extends AppCompatActivity {
 
         GlobalAsyncTask task = new GlobalAsyncTask();
         task.execute(USGS_REQUEST_URL1);
+
+
+        ListView lstview=(ListView)findViewById(R.id.countrylistView);
+        lstview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Intent intent = new Intent(Global_Activity.this, global_show_Activity.class);
+                int i=(int)id;
+                Global corona=  globals.get(i);
+                String country=corona.getCountry();
+                String active=corona.getActive();
+                String death=corona.getDeath();
+                String recover=corona.getRecover();
+                String total=corona.getTotal();
+                intent.putExtra("PLACE",country);
+                intent.putExtra("ACTIVE",active);
+                intent.putExtra("TOTAL",total);
+                intent.putExtra("RECOVER",recover);
+                intent.putExtra("DEATH",death);
+                startActivity(intent);
+            }
+        });
     }
 
     private class GlobalAsyncTask extends AsyncTask<String, Void, ArrayList<Global>> {

@@ -65,7 +65,7 @@ public class District extends AppCompatActivity {
                 String death=corona.getDeath();
                 String recover=corona.getRecover();
                 String total=corona.getTotal();
-                intent.putExtra("DISTRICT",dist);
+                intent.putExtra("PLACE",dist);
                 intent.putExtra("ACTIVE",active);
                 intent.putExtra("TOTAL",total);
                 intent.putExtra("RECOVER",recover);

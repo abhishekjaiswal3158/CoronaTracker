@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class ShowActivity extends AppCompatActivity {
+public class global_show_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show);
-
+        setContentView(R.layout.activity_global_show);
         Intent intent = getIntent();
         String place = intent.getStringExtra("PLACE");
         String active=intent.getStringExtra("ACTIVE");
@@ -20,11 +19,11 @@ public class ShowActivity extends AppCompatActivity {
         String death=intent.getStringExtra("DEATH");
         String total=intent.getStringExtra("TOTAL");
 
-        TextView dis=(TextView)findViewById(R.id.splace);
-        TextView a=(TextView)findViewById(R.id.sactive);
-        TextView r=(TextView)findViewById(R.id.srecover);
-        TextView d=(TextView)findViewById(R.id.sdeath);
-        TextView t=(TextView)findViewById(R.id.stotal);
+        TextView dis=(TextView)findViewById(R.id.gplace);
+        TextView a=(TextView)findViewById(R.id.gactive);
+        TextView r=(TextView)findViewById(R.id.grecover);
+        TextView d=(TextView)findViewById(R.id.gdeath);
+        TextView t=(TextView)findViewById(R.id.gtotal);
 
         dis.setText(place);
         a.setText(active);
