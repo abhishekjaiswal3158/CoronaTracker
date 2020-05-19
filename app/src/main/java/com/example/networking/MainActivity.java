@@ -2,11 +2,16 @@ package com.example.networking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView earthquakeListView = (ListView) findViewById(R.id.listView);
+        final ArrayList<Corona> arrayList=new ArrayList<Corona>();
         // Create a new adapter that takes an empty list of earthquakes as input
-        mAdapter = new CoronaAdapter(this, new ArrayList<Corona>());
+        mAdapter = new CoronaAdapter(this, arrayList);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -32,7 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
         CoronaAsyncTask task = new CoronaAsyncTask();
         task.execute(USGS_REQUEST_URL);
+
+
+
+        ListView lstview=(ListView)findViewById(R.id.listView);
+        lstview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Intent intent = new Intent(MainActivity.this, District.class);
+                int i=(int)id;
+              Corona corona=  arrayList.get(i);
+              String state=corona.getState();
+                intent.putExtra("STATE",state);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
+
 
     private class CoronaAsyncTask extends AsyncTask<String, Void, ArrayList<Corona>> {
 

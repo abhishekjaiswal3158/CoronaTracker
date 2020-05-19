@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/state"
+        android:id="@+id/district"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#FF5733 "
@@ -19,14 +19,14 @@
         android:layout_width="0dp"
         android:gravity="center"
         android:layout_height="wrap_content"
-        android:id="@+id/total"
+        android:id="@+id/dtotal"
         android:background="#34495E"
         android:textColor="#ffffff"
         android:layout_weight="1"/>
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/active"
+        android:id="@+id/dactive"
         android:gravity="center"
         android:background="#0000ff"
         android:textColor="#ffffff"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/death"
+        android:id="@+id/ddeath"
         android:gravity="center"
         android:background="#ff0000"
         android:textColor="#ffffff"
@@ -42,7 +42,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/recovered"
+        android:id="@+id/drecovered"
         android:gravity="center"
         android:textColor="#ffffff"
         android:background="#196F3D"

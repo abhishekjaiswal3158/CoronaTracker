@@ -1,18 +1,19 @@
 package com.example.networking;
 
-public class Corona {
-   private String total;
-   private String active;
-   private String recover;
-   private String state;
-   private String death;
+public class DistrictCorona {
+
+    private String total;
+    private String active;
+    private String recover;
+    private String district;
+    private String death;
 
 
-    public Corona(String mtotal,String mactive,String mrecover,String mdeath,String mstate){
+    public DistrictCorona(String mtotal,String mactive,String mrecover,String mdeath,String mdistrict){
         total=mtotal;
         active=mactive;
         recover=mrecover;
-        state=mstate;
+        district=mdistrict;
         death=mdeath;
     }
 
@@ -26,10 +27,11 @@ public class Corona {
     public String getRecover(){
         return recover;
     }
-    public String getState(){
-        return state;
+    public String getDistrict(){
+        return district;
     }
     public String getDeath(){
         return death;
     }
+
 }

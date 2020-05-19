@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class CoronaAdapter extends ArrayAdapter<Corona> {
-    private int mColorId;
+
 
     public CoronaAdapter(Activity context, ArrayList<Corona> corona_object) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
@@ -22,15 +22,15 @@ public class CoronaAdapter extends ArrayAdapter<Corona> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Check if the existing view is being reused, otherwise inflate the view
-        View listItemView = convertView;
-        if(listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item, parent, false);
-        }
+            // Check if the existing view is being reused, otherwise inflate the view
+            View listItemView = convertView;
+            if(listItemView == null) {
+                listItemView = LayoutInflater.from(getContext()).inflate(
+                        R.layout.list_item, parent, false);
+            }
 
-        // Get the {@link AndroidFlavor} object located at this position in the list
-        Corona currentCorona = getItem(position);
+            // Get the {@link AndroidFlavor} object located at this position in the list
+            Corona currentCorona = getItem(position);
 
        TextView state=(TextView)listItemView.findViewById(R.id.state);
        state.setText(currentCorona.getState());
