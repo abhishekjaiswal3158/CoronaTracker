@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button glo=(Button)findViewById(R.id.global);
+        glo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Global_Activity.class);
+                startActivity(intent);
+            }
+        });
+
         ListView earthquakeListView = (ListView) findViewById(R.id.listView);
         final ArrayList<Corona> arrayList=new ArrayList<Corona>();
         // Create a new adapter that takes an empty list of earthquakes as input
@@ -38,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         CoronaAsyncTask task = new CoronaAsyncTask();
         task.execute(USGS_REQUEST_URL);
+
 
 
 
