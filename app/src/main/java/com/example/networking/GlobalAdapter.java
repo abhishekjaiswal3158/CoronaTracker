@@ -35,17 +35,10 @@ public class GlobalAdapter extends ArrayAdapter<Global> {
         TextView state=(TextView)listItemView.findViewById(R.id.country);
         state.setText(currentCorona.getCountry());
 
-        TextView total=(TextView)listItemView.findViewById(R.id.ctotal);
-        total.setText(currentCorona.getTotal());
+
 
         TextView active=(TextView)listItemView.findViewById(R.id.cactive);
         active.setText(currentCorona.getActive());
-
-        TextView recover=(TextView)listItemView.findViewById(R.id.crecovered);
-        recover.setText(currentCorona.getRecover());
-
-        TextView death=(TextView)listItemView.findViewById(R.id.cdeath);
-        death.setText(currentCorona.getDeath());
 
 
         return listItemView;

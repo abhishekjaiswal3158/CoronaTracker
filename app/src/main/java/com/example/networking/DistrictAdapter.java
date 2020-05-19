@@ -35,17 +35,12 @@ public class DistrictAdapter extends ArrayAdapter<DistrictCorona> {
         TextView district=(TextView)listItemView.findViewById(R.id.district);
         district.setText(currentCorona.getDistrict());
 
-        TextView total=(TextView)listItemView.findViewById(R.id.dtotal);
-        total.setText(currentCorona.getTotal());
+
 
         TextView active=(TextView)listItemView.findViewById(R.id.dactive);
         active.setText(currentCorona.getActive());
 
-        TextView recover=(TextView)listItemView.findViewById(R.id.drecovered);
-        recover.setText(currentCorona.getRecover());
 
-        TextView death=(TextView)listItemView.findViewById(R.id.ddeath);
-        death.setText(currentCorona.getDeath());
 
 
         return listItemView;

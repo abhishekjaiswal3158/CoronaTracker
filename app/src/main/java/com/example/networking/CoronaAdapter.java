@@ -35,17 +35,12 @@ public class CoronaAdapter extends ArrayAdapter<Corona> {
        TextView state=(TextView)listItemView.findViewById(R.id.state);
        state.setText(currentCorona.getState());
 
-        TextView total=(TextView)listItemView.findViewById(R.id.total);
-        total.setText(currentCorona.getTotal());
+
 
         TextView active=(TextView)listItemView.findViewById(R.id.active);
         active.setText(currentCorona.getActive());
 
-        TextView recover=(TextView)listItemView.findViewById(R.id.recovered);
-        recover.setText(currentCorona.getRecover());
 
-        TextView death=(TextView)listItemView.findViewById(R.id.death);
-        death.setText(currentCorona.getDeath());
 
 
         return listItemView;
