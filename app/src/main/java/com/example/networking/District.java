@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,9 +39,9 @@ public class District extends AppCompatActivity {
         state = intent.getStringExtra("STATE");
 
         ListView earthquakeListView = (ListView) findViewById(R.id.districtList);
-
+        final ArrayList<DistrictCorona> arrayList=new ArrayList<>();
         // Create a new adapter that takes an empty list of earthquakes as input
-        mAdapter = new DistrictAdapter(this, new ArrayList<DistrictCorona>());
+        mAdapter = new DistrictAdapter(this, arrayList);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
@@ -47,8 +49,30 @@ public class District extends AppCompatActivity {
 
 
 
+
         DistrictAsyncTask task = new DistrictAsyncTask();
         task.execute(USGS_REQUEST_URL1);
+
+
+        ListView lstview=(ListView)findViewById(R.id.districtList);
+        lstview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                Intent intent = new Intent(District.this, ShowActivity.class);
+                int i=(int)id;
+                DistrictCorona corona=  arrayList.get(i);
+                String dist=corona.getDistrict();
+                String active=corona.getActive();
+                String death=corona.getDeath();
+                String recover=corona.getRecover();
+                String total=corona.getTotal();
+                intent.putExtra("DISTRICT",dist);
+                intent.putExtra("ACTIVE",active);
+                intent.putExtra("TOTAL",total);
+                intent.putExtra("RECOVER",recover);
+                intent.putExtra("DEATH",death);
+                startActivity(intent);
+            }
+        });
 
     }
     private class DistrictAsyncTask extends AsyncTask<String, Void, ArrayList<DistrictCorona>> {
