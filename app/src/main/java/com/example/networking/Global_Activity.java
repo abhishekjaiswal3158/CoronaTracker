@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -37,8 +38,11 @@ final ArrayList<Global> globals=new ArrayList<>();
 
 
 
+
+
         GlobalAsyncTask task = new GlobalAsyncTask();
         task.execute(USGS_REQUEST_URL1);
+
 
 
         ListView lstview=(ListView)findViewById(R.id.countrylistView);
@@ -60,6 +64,10 @@ final ArrayList<Global> globals=new ArrayList<>();
                 startActivity(intent);
             }
         });
+
+
+
+
     }
 
     private class GlobalAsyncTask extends AsyncTask<String, Void, ArrayList<Global>> {
@@ -92,6 +100,22 @@ final ArrayList<Global> globals=new ArrayList<>();
             // data set. This will trigger the ListView to update.
             if (data != null && !data.isEmpty()) {
                 mAdapter.addAll(data);
+
+                Global g=data.get(0);
+                String total=g.getTotal();
+                String recover=g.getRecover();
+                String active=g.getActive();
+                String death=g.getDeath();
+
+                TextView t=(TextView)findViewById(R.id.wtotal);
+                TextView r=(TextView)findViewById(R.id.wrecover);
+                TextView a=(TextView)findViewById(R.id.wactive);
+                TextView d=(TextView)findViewById(R.id.wdeath);
+
+                t.setText(total);
+                r.setText(recover);
+                a.setText(active);
+                d.setText(death);
             }
         }
     }

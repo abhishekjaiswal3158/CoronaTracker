@@ -17,20 +17,28 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    String json;
 
     private static final String LOG_TAG = MainActivity.class.getName();
     /** URL for earthquake data from the USGS dataset */
     private static final String USGS_REQUEST_URL =
             "https://covid-19india-api.herokuapp.com/v2.0/state_data";
+    private static final String url2 =
+            "https://coronavirus-19-api.herokuapp.com/countries";
+
+
    private CoronaAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
 
@@ -45,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         CoronaAsyncTask task = new CoronaAsyncTask();
         task.execute(USGS_REQUEST_URL);
+
+        IndiaAsyncTask task2 = new IndiaAsyncTask();
+        task2.execute(url2);
 
 
 
@@ -71,13 +82,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
+
+
     }
 
 
 
 
 
-    private class CoronaAsyncTask extends AsyncTask<String, Void, ArrayList<Corona>> {
+    private class CoronaAsyncTask extends android.os.AsyncTask<String, Void, ArrayList<Corona>> {
 
 
         @Override
@@ -101,6 +118,50 @@ public class MainActivity extends AppCompatActivity {
             if (data != null && !data.isEmpty()) {
                 mAdapter.addAll(data);
             }
+        }
+    }
+
+    private class IndiaAsyncTask extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String  doInBackground(String... urls) {
+            // Don't perform the request if there are no URLs, or the first URL is null
+            if (urls.length < 1 || urls[0] == null) {
+                return null;
+            }
+
+            String result = IndiaUtils.fetchEarthquakeData(urls[0]);
+            return result;
+        }
+
+
+        @Override
+        protected void onPostExecute(String data) {
+            try {
+                JSONArray array=new JSONArray(data);
+                JSONObject o=array.getJSONObject(11);
+                String total=o.getString("cases");
+                String active=o.getString("active");
+                String recover=o.getString("recovered");
+                String death=o.getString("deaths");
+
+                TextView t=(TextView)findViewById(R.id.itotal);
+                TextView r=(TextView)findViewById(R.id.irecover);
+                TextView a=(TextView)findViewById(R.id.iactive);
+                TextView d=(TextView)findViewById(R.id.ideath);
+
+                t.setText(total);
+                r.setText(recover);
+                a.setText(active);
+                d.setText(death);
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
