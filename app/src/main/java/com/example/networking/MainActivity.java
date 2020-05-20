@@ -57,7 +57,15 @@ public class MainActivity extends AppCompatActivity {
                 int i=(int)id;
                 Corona corona=  arrayList.get(i);
                 String state=corona.getState();
+                String total=corona.getTotal();
+                String active=corona.getActive();
+                String recover=corona.getRecover();
+                String death=corona.getDeath();
                 intent.putExtra("STATE",state);
+                intent.putExtra("TOTAL",total);
+                intent.putExtra("ACTIVE",active);
+                intent.putExtra("DEATH",death);
+                intent.putExtra("RECOVER",recover);
                 startActivity(intent);
             }
         });

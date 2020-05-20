@@ -37,6 +37,24 @@ public class District extends AppCompatActivity {
 
         Intent intent = getIntent();
         state = intent.getStringExtra("STATE");
+        TextView st=findViewById(R.id.dstate);
+        st.setText(state);
+
+        String t = intent.getStringExtra("TOTAL");
+        TextView total=findViewById(R.id.statotal);
+        total.setText(t);
+
+        String a = intent.getStringExtra("ACTIVE");
+        TextView active=findViewById(R.id.staactive);
+        active.setText(a);
+
+        String d = intent.getStringExtra("DEATH");
+        TextView death=findViewById(R.id.stadeath);
+        death.setText(d);
+
+        String r = intent.getStringExtra("RECOVER");
+        TextView recover=findViewById(R.id.starecover);
+        recover.setText(r);
 
         ListView earthquakeListView = (ListView) findViewById(R.id.districtList);
         final ArrayList<DistrictCorona> arrayList=new ArrayList<>();
