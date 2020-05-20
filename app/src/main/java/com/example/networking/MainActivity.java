@@ -52,13 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         ListView lstview=(ListView)findViewById(R.id.listView);
         lstview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 Intent intent = new Intent(MainActivity.this, District.class);
                 int i=(int)id;
-              Corona corona=  arrayList.get(i);
-              String state=corona.getState();
+                Corona corona=  arrayList.get(i);
+                String state=corona.getState();
                 intent.putExtra("STATE",state);
                 startActivity(intent);
             }
